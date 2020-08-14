@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt|Yeseva+One" rel="stylesheet">
+    
+</head>
+<style>
+  body{
+            background-color:#71d1f4;
+        }
+        #next{
+            display:none;
+        }
+        #sub{
+            display: none;
+        }
+        .front{
+            margin:2%;
+            outline:5px solid #71d1f4;
+            padding:5%;
+            height:335px;
+            padding-top:20%;
+            text-align: center;
+            background-color: white;
+            color:#71d1f4;
+            font-family: 'Yeseva One', cursive;
+
+        }
+        .answers{
+            margin:2%;
+            margin-top:5%;
+            padding:5%;
+            align-self: center;
+            background-color: white;
+            display:none;
+            color:#71d1f4;
+            border:5px solid white;
+            font-family: 'Rokkitt', serif;
+            font-size:20px;
+        }
+        .qa{
+            color:#71d1f4;
+        }
+        .quiz{
+            margin:2%;
+            margin-top:5%;
+            padding:5%;
+            align-self: center;
+            background-color: #71d1f4;
+            display:none;
+            color:#40c2f2;
+            border:5px solid white;
+            font-family: 'Rokkitt', serif;
+        }
+        .result{
+            margin:2%;
+            padding:5%;
+            padding-top:40%;
+            height:330px;
+            text-align: center;
+            background-color: white;
+            display: none;
+            font-family: 'Rokkitt', serif;
+
+        }
+        input[type="radio"] {
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
+        .radio{
+             
+             
+             padding-bottom:4%;
+             
+        }
+        .radio label:before {
+          content: "";
+          display: inline-block;
+          width: 15px;
+          height:15px;
+          margin-right: 0.5em;
+          vertical-align: -3px;
+          border: 2px solid #666666;
+          padding: 0.13em;
+          background-color: transparent;
+          background-clip: content-box;
+
+        }
+        .radio label {
+          margin-right: 1em;
+        }
+        .radio input:hover + label:before {
+          border-color: #71d1f4;
+        }
+        .radio input:checked + label:before {
+          background-color: #71d1f4;
+          border-color: #71d1f4;
+        }
+        .arrow{
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 24px solid white;
+            position: relative;
+            left:30px;
+
+        }
+        #q{
+            background-color: white;
+            padding-top:10px;
+            padding-left:10px; 
+            padding-bottom:10px;
+            font-size:22px;
+            font-weight: bold;
+            border-radius:5px;
+            
+        }
+        #op1,#op2,#op3,#op4{
+            background-color: white;
+            margin-bottom:2.5%;
+            padding:5px;
+            padding-left: 4%;
+            border-radius:5px;
+            font-size:22px;
+        }
+        #op1:hover,#op2:hover,#op3:hover,#op4:hover{
+            background-color:#ffff99;
+        }
+        #num{
+            background-color:white;
+            font-size:20px;
+            border-radius:30px;
+            padding-left:2%;
+            color:#40c2f2;
+            width:45px;
+
+        }
+        #sub{
+            background-color: white;
+            padding: 8px;
+            border-radius:5px;
+            border:none;
+            width:200px;
+            font-size:20px;
+            color: #40c2f2;
+        }
+        #start{
+            background-color: #71d1f4;
+            color:white;
+            padding:8px;
+            font-size:20px;
+            border:none;
+            width:200px;
+            border-radius:5px;
+
+        }
+        .score{
+            font-size:21px;
+            font-weight: bolder;
+            color: #40c2f2;
+        }
+        .message{
+            font-size: 20px;
+            color: #40c2f2;
+        }
+        .answers{
+            display: none;
+        }
+        #a1,#a2,#a3,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10{
+            color:#80ff00;
+            font-weight: bold;
+        }
+
+</style>
+<script>
+   $(document).ready(function(){
+        var que;
+        var ans;
+        var right;
+        var i=0;
+        var score=0;
+        var que1={que:"What does COVID-19 stand for?",
+            ans:["It's a term for Coronavirus Disease 19, because it's the 19th strain of coronavirus discovered.","It's a term that stands for Coronavirus Disease 2019, the year it was first identified.","It was first identified in 19th century","None of the above"],
+            right:"1"};
+        var que2={que:"What other viruses belong to the coronavirus family?",
+            ans:["SARS and influenza","SARS and MERS","SARS and HIV","SARS-19"],
+            right:"1"};
+        var que3={que:"There are currently vaccines for the following coronaviruses:",
+            ans:["SARS","MERS","SARS & MERS","None of the Above"],right:"3"};
+        var que4={que:"How does weather seem to affect the novel coronavirus?",
+            ans:["The virus can’t survive in hot, humid climates","Cold temperatures can kill the virus.","It is not yet known.","Virus can die in Rainy Season"],
+            right:"2"};
+        var que5={que:"How is COVID-19 passed on?",
+            ans:["Through droplets that come from your mouth and nose when you cough or breathe out","In sexual fluids, including semen, vaginal fluids or anal mucous","By drinking unclean water","All of the above"],
+            right:"0"};
+        var que6={que:"What are the common symptoms of COVID-19? ",
+            ans:["A new and continuous coug","Fever","Tiredness","All of the above"],
+            right:"3"};
+        var que7={que:"Can you always tell if someone has COVID-19?",ans:["No – not everyone with COVID-19 has symptoms","Yes – it will be obvious, a person with COVID-19 coughs a lot","Yes – you can tell just by where a person comes from, their race and ethnicity","For sure i can warn him not to come close to me"],right:"0"};
+        var que8={que:"Can washing your hands protect you from COVID-19? ",ans:["Yes – but only if you use a strong bleach","Yes – normal soap and water or hand sanitizer is enough","No – Washing your hands doesn’t stop COVID-19","To some extent only"],right:"1"};
+        var que9={que:"Which of the following people is COVID-19 more dangerous for?",ans:["older people suffering from diseases","healthy children","Doctors","Engineers"],right:"0"};
+        var que10={que:"When should fabric face masks be worn?",ans:["On public transport","In crowded area","In mall and shops","All of the above"],right:"3"};
+        var quelst=[que1,que2,que3,que4,que5,que6,que7,que8,que9,que10];
+        var wrong=[];
+        $("#start").click(function(){
+            $(".front").hide();
+            $("#sub").show();
+            $(".quiz").show();
+            $("#num").text(i+1+"/"+quelst.length)
+            $("#q").text(quelst[i].que);
+            $("#op1").html("<input type='radio' name='opt' id='o1' value='0'><label for='o1'>"+quelst[i].ans[0])+"</label>";
+            $("#op2").html("<input type='radio' name='opt' id='o2' value='1'><label for='o2'>"+quelst[i].ans[1])+"</label>";
+            $("#op3").html("<input type='radio' name='opt' id='o3' value='2'><label for='o3'>"+quelst[i].ans[2])+"</label>";
+            $("#op4").html("<input type='radio' name='opt' id='o4' value='3'><label for='o4'>"+quelst[i].ans[3])+"</label>";
+            
+        });
+        $("#sub").click(function(){
+            
+            
+            if($("input[name='opt']:checked").val()!=null){
+                if($("input[name='opt']:checked").val()==quelst[i].right){
+                    score++;
+                }
+                else{
+                    wrong.push(i);
+                }   
+                $("#sub").hide();
+                $(".score").text(score);
+                if(i!=quelst.length-1){
+                next();
+                }
+                else{
+                    reslt();
+                }
+
+            }
+            else{
+                $(".p").text("Select One option");
+            }
+        });
+        function next(){
+            if(i!=(quelst.length)-1){
+                    i++;
+                }
+            $("#q").text(quelst[i].que);
+            $("#op1").html("<input type='radio' name='opt' id='o1' value='0'><label for='o1'>"+quelst[i].ans[0])+"</label>";
+            $("#op2").html("<input type='radio' name='opt' id='o2' value='1'><label for='o2'>"+quelst[i].ans[1])+"</label>";
+            $("#op3").html("<input type='radio' name='opt' id='o3' value='2'><label for='o3'>"+quelst[i].ans[2])+"</label>";
+            $("#op4").html("<input type='radio' name='opt' id='o4' value='3'><label for='o4'>"+quelst[i].ans[3])+"</label>";
+            $("#num").text(i+1+"/"+quelst.length);
+            $("#sub").show();
+            }
+        function reslt(){
+            $(".quiz").hide();
+            $(".result").show();
+            $(".score").text(score+"/"+quelst.length);
+            if(score<=4){
+                $(".message").text("Oh no!!You have little knowledge about Covid-19.");
+            }
+            else if(score<8){
+                $(".message").text("Good...But be aware more about Covid-19");
+            }
+            else{
+                $(".message").text("Great!! You have really good knowledge about Covid-19.Please aware people to stay inside and stay safe...");
+            }
+        }
+        $("#an").click(function(){
+            $(".result").hide();
+            $(".answers").show();
+            if((wrong.toString()).search("0")!=-1){
+                $("#a1").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("1")!=-1){
+                $("#a2").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("2")!=-1){
+                $("#a3").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("3")!=-1){
+                $("#a4").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("4")!=-1){
+                $("#a5").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("5")!=-1){
+                $("#a6").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("6")!=-1){
+                $("#a7").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("7")!=-1){
+                $("#a8").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("8")!=-1){
+                $("#a9").css('color','#ff6347');
+            }
+            if((wrong.toString()).search("9")!=-1){
+                $("#a10").css('color','#ff6347');
+            }
+            
+        });
+        
+    });
+
+
+</script>
+<body>
+    <div class="front">
+        <h1>Covid-19 Awareness Quiz</h1>
+        <button type="button" id="start">Start</button>    
+    </div>
+    <div class="quiz">
+        <p id="num"></p>
+        <div id="q"></div><div class="arrow"></div><br>
+        <div class="radio">
+            <div id="op1"></div>
+            <div id="op2"></div>
+            <div id="op3"></div>
+            <div id="op4"></div>
+        </div><br>
+        <center><button type="button" id="sub">Submit</button></center>
+    </div>
+    <div class="result" >
+        <div class="score"></div>
+        <br>
+        <div class="message"></div>
+        <button type="button" id="an">Click here to see answers</button>
+    </div>
+    <div class="answers">
+        <p class="qa">1.What does COVID-19 stand for?</p>
+        <p >Ans:<span id="a1"> It is a term that stands for Coronavirus Disease 2019, the year it was first identified.</span></p>
+        <p class="qa">2.What other viruses belong to the coronavirus family?</p>
+        <p >Ans:<span id="a2">SARS & MERS</p>
+        <p class="qa">3.There are currently vaccines for the following coronaviruses:</p>
+        <p >Ans:<span id="a3">None of the above</span></p>
+        <p class="qa">4.How does weather seem to affect the novel coronavirus?</p>
+        <p >Ans:<span id="a4">It is yet to be Known</span></p>
+        <p class="qa">5.How is COVID-19 passed on?</p>
+        <p>Ans:<span id="a5">Through droplets that come from your mouth and nose when you cough or breathe out</span></p>
+        <p class="qa">6.What are the common symptoms of COVID-19?</p>
+        <p>Ans:<span id="a6">All of the above</span></p>
+        <p class="qa">7.Can you always tell if someone has COVID-19?</p>
+        <p >Ans:<span id="a7">No – not everyone with COVID-19 has symptoms</span></p>
+        <p class="qa">8.Can washing your hands protect you from COVID-19? </p>
+        <p >Ans:<span id="a8">Yes – normal soap and water or hand sanitizer is enough</span></p>
+        <p class="qa">9.Which of the following people is COVID-19 more dangerous for?</p>
+        <p >Ans:<span id="a9">Older people suffering from disease</span></p>
+
+        <p class="qa">10.When should fabric face masks be worn?</p>
+        <p>Ans:<span id="a10">All of the above</p>
+    </div>
+    <button type="button"> <a href="/"> Go to main page</a></button>
+    
+</body>
+
+</html>

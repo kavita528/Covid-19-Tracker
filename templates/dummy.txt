@@ -1,0 +1,81 @@
+var que1={que:"What does COVID-19 stand for?",
+            ans:["It's a term for Coronavirus Disease 19, because it's the 19th strain of coronavirus discovered.","It's a term that stands for Coronavirus Disease 2019, the year it was first identified.","It was first identified in 19th century","None of the above"],
+            right:"1"};
+        var que2={que:"What other viruses belong to the coronavirus family?",
+            ans:["SARS and influenza","SARS and MERS","SARS and HIV","SARS-19"],
+            right:"1"};
+        var que3={que:"There are currently vaccines for the following coronaviruses:",
+            ans:["SARS","MERS","SARS & MERS","None of the Above"],right:"3"};
+        var que4={que:"How does weather seem to affect the novel coronavirus?",
+            ans:["The virus can’t survive in hot, humid climates","Cold temperatures can kill the virus.","It is not yet known.","Virus can die in Rainy Season"],
+            right:"2"};
+        var que5={que:"How is COVID-19 passed on?",
+            ans:["Through droplets that come from your mouth and nose when you cough or breathe out","In sexual fluids, including semen, vaginal fluids or anal mucous","By drinking unclean water","All of the above"],
+            right:"0"};
+        var que6={que:"What are the common symptoms of COVID-19? ",
+            ans:["A new and continuous coug","Fever","Tiredness","All of the above"],
+            right:"3"};
+        var que7={que:"Can you always tell if someone has COVID-19?",ans:["No – not everyone with COVID-19 has symptoms","Yes – it will be obvious, a person with COVID-19 coughs a lot","Yes – you can tell just by where a person comes from, their race and ethnicity","For sure i can warn him not to come close to me"],right:"0"};
+        var que8={que:"Can washing your hands protect you from COVID-19? ",ans:["Yes – but only if you use a strong bleach","Yes – normal soap and water or hand sanitizer is enough","No – Washing your hands doesn’t stop COVID-19","To some extent only"],right:"1"};
+        var que9={que:"Which of the following people is COVID-19 more dangerous for?",ans:["older people suffering from diseases","healthy children","Doctors","Engineers"],right:"0"};
+        var que10={que:"When should fabric face masks be worn?",ans:["On public transport","In crowded area","In mall and shops","All of the above"],right:"3"};
+        var quelst=[que1,que2,que3,que4,que5,que6,que7,que8,que9,que10];
+        var wrong=[];
+        $("#start").click(function(){
+            $(".front").hide();
+            $("#sub").show();
+            $(".quiz").show();
+            $("#num").text(i+1+"/"+quelst.length)
+            $("#q").text(quelst[i].que);
+            $("#op1").html("<input type='radio' name='opt' id='o1' value='0'><label for='o1'>"+quelst[i].ans[0])+"</label>";
+            $("#op2").html("<input type='radio' name='opt' id='o2' value='1'><label for='o2'>"+quelst[i].ans[1])+"</label>";
+            $("#op3").html("<input type='radio' name='opt' id='o3' value='2'><label for='o3'>"+quelst[i].ans[2])+"</label>";
+            $("#op4").html("<input type='radio' name='opt' id='o4' value='3'><label for='o4'>"+quelst[i].ans[3])+"</label>";
+            
+        });
+        $("#sub").click(function(){
+            
+            
+            if($("input[name='opt']:checked").val()!=null){
+                if($("input[name='opt']:checked").val()==quelst[i].right){
+                    score++;
+                }
+                else{
+                    wrong.push(i);
+                }   
+                $("#sub").hide();
+                $(".score").text(score);
+                if(i!=quelst.length-1){
+                next();
+                }
+                else{
+                    reslt();
+                }
+
+            }
+            else{
+                $(".p").text("Select One option");
+            }
+        });
+        function next(){
+            if(i!=(quelst.length)-1){
+                    i++;
+                }
+            $("#q").text(quelst[i].que);
+            $("#op1").html("<input type='radio' name='opt' id='o1' value='0'><label for='o1'>"+quelst[i].ans[0])+"</label>";
+            $("#op2").html("<input type='radio' name='opt' id='o2' value='1'><label for='o2'>"+quelst[i].ans[1])+"</label>";
+            $("#op3").html("<input type='radio' name='opt' id='o3' value='2'><label for='o3'>"+quelst[i].ans[2])+"</label>";
+            $("#op4").html("<input type='radio' name='opt' id='o4' value='3'><label for='o4'>"+quelst[i].ans[3])+"</label>";
+            $("#num").text(i+1+"/"+quelst.length);
+            $("#sub").show();
+            }
+        function reslt(){
+            $(".quiz").hide();
+            $(".result").show();
+            $(".score").text(score+"/"+quelst.length);
+            if(score<=4){
+                $(".message").text("Oh no!!You have little knowledge about Covid-19.");
+            }
+            else if(score<8){
+                $(".message").text("Good...But be aware more about Covid-19");
+            }

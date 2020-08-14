@@ -1,0 +1,199 @@
+
+<HEAD>
+
+    <style type="text/css">
+    <!--
+    .bgclr {background-color: white; color: black; font-weight: bold;}
+    -->
+    </style>
+    
+    <script language="JavaScript">
+    
+    
+    // Insert scooter questions number of questions
+    var numQues = 10;
+    
+    // Insert number of choices in each question
+    var numChoi = 4;
+    
+    // Insert number of questions displayed in answer area
+    var answers = new Array(10);
+    
+    // Insert answers to questions
+    answers[0] = "Through droplets that come from your mouth and nose when you cough or breathe out.";
+    answers[1] = "All the above.";
+    answers[2] = "No – not everyone with COVID-19 has symptoms.";
+    answers[3] = "Yes – normal soap and water or hand sanitizer is enough";
+    answers[4] = "No – people who adhere to antiretroviral treatment (ART) and have a high CD4 count aren’t more at risk";
+    answers[5] = "More than 200";
+    answers[6] = "Both A and B";
+    answers[7] = "It is the year the virus was first encountered :2019";
+    answers[8] = "Zoonotic";
+    answers[9] = "All the above";
+    
+    
+function getScore(form) {
+  var score = 0;
+  var currElt;
+  var currSelection;
+  for (i=0; i<numQues; i++) {
+    currElt = i*numChoi;
+    for (j=0; j<numChoi; j++) {
+      currSelection = form.elements[currElt + j];
+      if (currSelection.checked) {
+        if (currSelection.value == answers[i]) {
+          score++;
+		break;
+        }
+      }
+    }
+  }
+ 
+  
+  score = Math.round(score/numQues*100);
+  form.percentage.value = score + "%";
+  var correctAnswers = "";
+  for (i=1; i<=numQues; i++) {
+    correctAnswers += i + ". " + answers[i-1] + "\r\n";
+  }
+  
+  form.solutions.value = correctAnswers;
+}
+//  End -->
+</script>
+
+</HEAD>
+
+<!-- STEP TWO: Copy this code into the BODY of your HTML document  -->
+
+<BODY>
+
+<h3><u></u>Let us take a Quiz to create awareness on COVID-19:</u></h3>
+
+<form name="quiz">
+
+
+
+
+1.How is COVID-19 passed on?
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q1" value="Through droplets that come from your mouth and nose when you cough or breathe out.">Through droplets that come from your mouth and nose when you cough or breathe out.</li>
+  <li><input type="radio" name="q1" value="By drinking unclean water.">By drinking unclean water.</li>
+  <li><input type="radio" name="q1" value="In sexual fluids, including semen, vaginal fluids or anal mucous.">In sexual fluids, including semen, vaginal fluids or anal mucous.</li>
+  
+  <li><input type="radio" name="q1" value="all the above"> All the above</li>  
+</ul>
+
+
+
+
+2. What are the common symptoms of COVID-19? 
+
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q2" value="A new and continuous cough."> A new and continuous cough.</li>
+  <li><input type="radio" name="q2" value="Fever">Fever</li>
+  <li><input type="radio" name="q2" value="Tiredness">Tirednesss</li>
+  <li><input type="radio" name="q2" value="all the above"> All the above</li>  
+
+
+</ul>
+
+
+
+3.Can you always tell if someone has COVID-19? 
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q3" value="No – not everyone with COVID-19 has symptoms.">No – not everyone with COVID-19 has symptoms.</li>
+  <li><input type="radio" name="q3" value="Yes – it will be obvious, a person with COVID-19 coughs a lot.">Yes – it will be obvious, a person with COVID-19 coughs a lot.</li>
+  <li><input type="radio" name="q3" value="Yes – you can tell just by where a person comes from, their race and ethnicity.">Yes – you can tell just by where a person comes from, their race and ethnicity.</li>
+  <li><input type="radio" name="q3" value="all the above"> All the above</li>  
+
+  </ul>
+
+
+
+4.Can washing your hands protect you from COVID-19? 
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q4" value="
+Yes – but only if you use a strong bleach.">
+Yes – but only if you use a strong bleach.</li>
+  <li><input type="radio" name="q4" value="Yes – normal soap and water or hand sanitizer is enough">Yes – normal soap and water or hand sanitizer is enough</li>
+  <li><input type="radio" name="q4" value="No – Washing your hands doesn’t stop COVID-19.">No – Washing your hands doesn’t stop COVID-19.</li>
+  <li><input type="radio" name="q4" value="None"> None</li>  
+
+
+</ul>
+
+5.Are people living with HIV always more at risk? 
+
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q5" value="Yes – people with HIV have weaker immune systemst."> Yes – people with HIV have weaker immune systems.</li>
+  <li><input type="radio" name="q5" value="No – people who adhere to antiretroviral treatment (ART) and have a high CD4 count aren’t more at risk">No – people who adhere to antiretroviral treatment (ART) and have a high CD4 count aren’t more at risk</li>
+  <li><input type="radio" name="q5" value="No risk at all">No risk at All</li>
+  <li><input type="radio" name="q5" value="None"> None</li>  
+
+</ul>
+
+6.how many countries, areas or territories are suffering from novel coronavirus outbreak in the world?  
+
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q6" value="More than 50"> More than 50.</li>
+  <li><input type="radio" name="q6" value="More than 100">More than 100</li>
+  <li><input type="radio" name="q6" value="More than 150">More than 150</li>
+  <li><input type="radio" name="q6" value="More than 200"> More than 200</li>  
+
+</ul>
+
+7.which of the following disease are related to coronavirus?
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q7" value="MERS."> MERS</li>
+  <li><input type="radio" name="q7" value="SARS">SARS</li>
+  <li><input type="radio" name="q7" value="Both A and B">Both A and B</li>
+  <li><input type="radio" name="q7" value="Neither A and B"> Neither A and B</li>  
+
+</ul>
+
+8. What does the 19 in covid-19 stands for?
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q6" value="It stands for the 19 molecules that make up the virus.">It stands for the 19 molecules that make up the virus.</li>
+  <li><input type="radio" name="q6" value="It is the 19th coronavirus identified since the WHO began naming them">It is the 19th coronavirus identified since the WHO began naming them.</li>
+  <li><input type="radio" name="q6" value="It is the year the virus was first encountered :2019">It is the year the virus was first encountered :2019</li>
+  <li><input type="radio" name="q6" value="None"> None</li>  
+
+</ul>
+
+9 .A disease that can be transmitted to humans from animals is known as? 
+
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q5" value="Hyponotic."> Hyponotic.</li>
+  <li><input type="radio" name="q5" value="Stenotic"> Stenotic </li>
+  <li><input type="radio" name="q5" value="Zoonotic">Zoonotic</li>
+  <li><input type="radio" name="q7" value="None"> None</li>  
+
+</ul>
+
+10. When should fabric face mask be worn?
+
+<ul style="margin-top: 1pt">
+  <li><input type="radio" name="q5" value="On public transport"> On public transport</li>
+  <li><input type="radio" name="q5" value="In confined or crowded place"> In confined or crowded place </li>
+  <li><input type="radio" name="q5" value="In small shops">In small shops</li>
+  <li><input type="radio" name="q7" value="All the above"> All the above</li>  
+
+</ul>
+
+
+
+
+
+
+
+
+<input type="button" value="Get score" onClick="getScore(this.form)">
+<input type="reset" value="Clear answers">
+<p> Score = <strong><input class="bgclr" type="text" size="5" name="percentage" disabled></strong><br><br>
+Correct answers:<br>
+<textarea class="bgclr" name="solutions" wrap="virtual" rows="10" cols="100" disabled>
+</textarea>
+</form>
+</BODY>
+</html>

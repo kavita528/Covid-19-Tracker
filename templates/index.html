@@ -1,0 +1,141 @@
+<!DOCTYPE>
+<html>
+<head>     
+<title> covid-19 Update </title>
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    font-family: century Gothic;
+}
+header{
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+body{
+   background-image:url("{{url_for('static',filename='def.jpg')}}");
+   border-radius: 8px;
+   background-repeat: no-repeat;
+   background-image: 40px 40px;
+   width: 100%;
+   height: 100%;
+   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ul{
+    float: right;
+    list-style-type: none;
+    margin-top: 25px;
+}
+ul li{
+    display: inline-block;
+}
+ul li a{
+    text-decoration: none;
+    color:#fff;
+    padding: 5px 20px;
+    border: 1px solid #fff;
+    transition: 0.6 ease;
+}
+h3
+{
+    font-size: large;
+    color:yellow;
+}
+ul li a:hover {
+background-color:#fff; 
+color:#000; 
+}
+.title{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform:translate(-50%,-50%) ;
+}
+.title h1{
+    color:black;
+    font-size: 55px;
+}
+.button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-40%,-50%) ;
+}
+.btn{
+border:1px blue;
+padding: 10px 30px;
+color:yellowgreen;
+text-decoration: none;
+transition: 0.6s ease;
+}
+.btn:hover{
+
+    background-color: orange;
+color:#000;
+}
+
+.typewriter h1 {
+  font-family:Georgia; /* Web-safe typewriter-like font */
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(30, end),
+    blinking-cursor .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blinking-cursor {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+</style>
+
+<body>
+ 
+    <header>
+        <div class="main">
+            <ul>
+                
+                <li><a href="/symptoms"> Symptoms </a></li>
+                
+
+                <li><a href="/advise"> Advice</a></li>
+                
+                <li><a href="/prevention"> prevention </a></li> 
+
+                <li><a href="/quiz"> Quiz </a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <div class="love" style="text-align: center;">
+             <img src="{{url_for('static',filename='india.png')}}" alt="love my india" style="width: 90px;height: 90px;"><p style="font-family: monospace;font-size: 56px;color: tomato;">India</p>
+                 </div>
+                 <br>
+
+                 <div class="typewriter">
+                    <h1>Swadeshi Covid-19 Tracker</h1><br>
+                  </div>
+                  
+    </div>
+   <br>     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<h2 style="text-align: center;"><strong> Total Cases in india</strong> <br><hr><br> <strong> <h2 style="color: red;"> {{inf[0]}}</h2></strong></h2><br>
+<hr><br>
+<h2 style="text-align: center;"><strong> Number of person died so far </strong> <br><hr><br> <strong> <h2 style="color: red;">{{inf[1]}}</h2></strong></h2><br>
+<hr><br>
+<h2 style="text-align: center;"><strong> Total Recoved cases </strong> <br><hr><br><strong><h2 style="color: red;">{{inf[2]}}</h2>  </strong></strong></h2><br>
+<hr><br>
+       
+    </header> 
+</body>
+</html>
